@@ -6,4 +6,4 @@ Kappakstursróbot, \
 Rallýróbot, \
 Róbot sem kemur og réttir manni glas, \
 Róbot sem stokkar spilastokk, \
-Fljúgando vélmenni sem stýrir sig sjálft
+Fljúgandi vélmenni sem stýrir sig sjálft
