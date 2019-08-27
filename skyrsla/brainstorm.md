@@ -7,3 +7,5 @@ Rallýróbot, \
 Róbot sem kemur og réttir manni glas, \
 Róbot sem stokkar spilastokk, \
 Fljúgandi vélmenni sem stýrir sig sjálft
+
+Lasertag vélmenni
