@@ -11,4 +11,7 @@ Næsta skrefið mundi vera að gefa vélinna kóða til að verða sjálfkeyrand
 
 Þegar fyrstu tvö skrefin eru búinn við getum byrjað að sjá hvort við getum passið inn aðra hugmynd eða þróa fyrsta hugmyndina lengra. Ný hugmynd væri eitthvað eins og að bæta við spilastokkara við vélmennið og að þróa fyrstu hugmyndina mundi leiða til auka hlutir róbotinn getur gert með drykki, til dæmis að hrysta drykk.
 
-
+### Aukahugmyndir
+- Spilastokkari
+- kælibox?
+- flösku opnari
