@@ -1,5 +1,8 @@
+
+### Hugmyndinn
 Við völdu vélmenni sem berir drykkji sem hugmynd til að reyna skapa. Aðal markmiðið með þennan róbot er að sækja drykki fyrir notendan.
 
+### Þrepin
 Við viljum byrja með að gera einfalda hlutina first, td. setja það saman með VEX robotics parta, prufa og sett á fyrstu mótorin.
 
 Fyrsta skrefið væri að setja róbotið saman og geta keyrt það til að prófa ef það er nógu stöðugt fyrir glös og flöskur.
