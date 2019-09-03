@@ -7,7 +7,8 @@ Allt frá kaffi, gosflöskur, vatn og dósir.
 ### Gagnleg notkun
 Mörg fyritæki eins og Walmart og Amazon eru löngu byrjaðir að nota vélmenni eins og þetta, sumir í búðum aðallega sýna hvar einhver vara ætti að vera, aðrir eru bara pallar í geymsluhúsum sem hreyfa sig og svo eru sumir sem eru bara lyftarar með sensors.
 
-Gott dæmi um vélpallana eru þau sem Fetch Robotics hafa verið að selja í nokkur ár, enn þau þurfa samt manna aðstoð vegna vélmenni geta ekki auðveldlega tekið mismunandi hluti í röð.
+Gott dæmi um vélpallana eru þau sem Fetch Robotics hafa verið að selja í nokkur ár, enn þau þurfa samt manna aðstoð vegna vélmenni geta ekki auðveldlega tekið marga mismunandi hluti í röð, svo þau eru meira roomba vél sem virkar sem sjálfstýrandi bretti sem þola mikla þyngdir.
+Aðal skorturinn á þessi tegundum af vélmennum eru auðvitað að geta vitið hvað á taka án hjálp frá manneskju og svo raða þau með aðra hluti sem gæti verið hvað sem er.
 
 Okkar vélmenni verður meira fyrir persónuleg notkun frekar enn í geymsluhúsi eða búð.
 
