@@ -11,6 +11,9 @@ Gott dæmi um vélpallana eru þau sem Fetch Robotics hafa verið að selja í n
 
 Aðal skorturinn á þessi tegundum af vélmennum eru auðvitað að geta vitið hvað á taka án hjálp frá manneskju og svo raða þau með aðra hluti sem gæti verið hvað sem er.
 
+Auðvitað vélmenni sem geta ratið eru gagnlegir í marga hluti, það er frekar nauðsynlegt líka að vélmennið þitt getur ratið. Allt frá ryksuguvélmenni til vélpallar til vélmenni sem eru dáltið eins og þjálfaðir hundar sem hjálpa blint fólk rata.
+Til að hafa vélmenni rata það gæti notið margar aðferðir, frá einfalt forrit til að forðast árekstur til að hreyfa sig byggt á hvað það skynjar til kortaleggingar forrit.
+
 Okkar vélmenni verður meira fyrir persónuleg notkun frekar enn í geymsluhúsi eða búð og við munum reyna að.
 
 ### Þrepin
