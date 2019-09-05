@@ -9,3 +9,6 @@ Við skipulögu VEX parta kassan okkar og veldu drykkja hugmyndina til að vinna
 ### 03/09/2019
 Við fengum vélmennið til að keyra með fjarstýringu og gerðu öruggt pláss til að festa batteríið. 
 Skýrslan er með nógu mörg orð enn það má skrifa meira í það.
+
+### 05/09/2019
+Róbotinn endgerður til að styðja fleiri breytingar í framtíðinnu.
