@@ -15,3 +15,6 @@ Róbotinn endgerður til að styðja fleiri breytingar í framtíðinnu.
 
 ### 17/09/2019
 Við kláruðum smíðina á vélmenninu og fórum að prófa stýringuna á því, sem virkaði vel, svo við ætlum að fara að forrita vélmennið í næsta tíma
+
+### 19/06/2019
+Við settum myndavél á vélmennið og byrjuðum myndavéla stillingar/kóðun.
