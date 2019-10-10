@@ -24,3 +24,6 @@ Við settum sonar sensor á vélmennið, notuðum tímann í að prófa hann og 
 
 ## 8/10/2019
 Við héldum áfram að kóða ennþá meira, og núna getur vélmennið farið að rauðri flösku, stoppað hjá henni og tekið hana upp
+
+## 10/10/2019
+Við forrituðum mótoranna þannig að þeir hreyfast eins nema bara eyði sem minnstu batteríi, svo settum við auka bút undir höndina svo hún festist ekki niðri og settum teyjur á klónna til að gera gripið miklu betra
