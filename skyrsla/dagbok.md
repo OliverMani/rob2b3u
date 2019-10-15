@@ -27,3 +27,6 @@ Við héldum áfram að kóða ennþá meira, og núna getur vélmennið farið 
 
 ## 10/10/2019
 Við forrituðum mótoranna þannig að þeir hreyfast eins nema bara eyði sem minnstu batteríi, svo settum við auka bút undir höndina svo hún festist ekki niðri og settum teyjur á klónna til að gera gripið miklu betra
+
+# 15/10/2019
+Það fór mikill tími í að hlaða batteríið en allavega núna, þá á vélmennið að muna hvert það fór
