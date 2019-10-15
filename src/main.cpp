@@ -25,25 +25,31 @@ vex::sonar      Sonar1         = vex::sonar(Brain.ThreeWirePort.A);
 int x, y;
 const int deiling = 40;
 
+
+
 // heldur utan um hvert vélmennið er að fara
 struct Travel {
-  int time; //millisecondss
+  float time; //millisecondss
   int left_motor;
   int right_motor;
-  
 };
+
+struct Travel list[100];
 
 // TODO: gera fallið
 struct Travel getDriveData(){
+  
   struct Travel result;
-  result.time = 0;
-  result.left_motor = 0;
-  result.right_motor = 0;
+  result.time = (float)Brain.timer(vex::timeUnits::msec);
+  result.left_motor = LeftMotor.velocity(vex::velocityUnits::pct);
+  result.right_motor = RightMotor.velocity(vex::velocityUnits::pct);;
+  Brain.resetTimer();
   return result;
 }
 
 
 void setSpeed(double percent){
+  
   LeftMotor.setVelocity(percent, vex::velocityUnits::pct);
   RightMotor.setVelocity(percent, vex::velocityUnits::pct);
 }
@@ -53,14 +59,20 @@ void setSpeed(double percent){
 
 // Breiddin í myndunum er 314 (width)
 int main() {
-
+  int travelIndex = 0;
   setSpeed(30);
   ArmMotor.setVelocity(30, vex::velocityUnits::pct);
-  ClawMotor.setVelocity(10, vex::velocityUnits::pct);
+  ClawMotor.setVelocity(10 , vex::velocityUnits::pct);
   int count = 0;
   int armCount = 0;
-  
+
+  char going = 'N'; //N = Nowhere, F = Forwards, L = Left, R = Right
+
   while(true){
+
+    
+    //Brain.Screen.printAt(10, 230, "Set velocity to 1!");
+
     Vision1.takeSnapshot(1);
     //Brain.Screen.printAt(10, 20, "                                  ");
     if(Vision1.largestObject.exists && Vision1.largestObject.width > 5){
@@ -80,15 +92,36 @@ int main() {
       if(cm > 15 || cm < 0){
         setSpeed(30);
         if(x / deiling == 0){
+          if(going != 'F')
+          {
+            struct Travel travel = getDriveData();
+            list[travelIndex] = travel;
+            travelIndex++;
+          }
+          going = 'F';
           Brain.Screen.printAt(10, 110, "Going: Forward");
           LeftMotor.spin(vex::directionType::fwd);
           RightMotor.spin(vex::directionType::fwd);
         } else if(x > deiling){
+          if(going != 'R')
+          {
+            struct Travel travel = getDriveData();
+            list[travelIndex] = travel;
+            travelIndex++;
+          }
+          going = 'R';
           Brain.Screen.printAt(10, 110, "Going: Right  ");
           LeftMotor.spin(vex::directionType::fwd);
           //RightMotor.spin(vex::directionType::rev);
           RightMotor.stop();
         } else {
+          if(going != 'L')
+          {
+            struct Travel travel = getDriveData();
+            list[travelIndex] = travel;
+            travelIndex++;
+          }
+          going = 'L';
           Brain.Screen.printAt(10, 110, "Going: Left   ");
           //LeftMotor.spin(vex::directionType::rev);
           LeftMotor.stop();
@@ -102,6 +135,7 @@ int main() {
       } else {
         LeftMotor.stop();
         RightMotor.stop();
+        
         Brain.Screen.printAt(10, 140, "Count: %d    ", count);
         count++;
         
@@ -111,6 +145,12 @@ int main() {
       
 
     } else {
+      if(going != 'N'){
+        struct Travel travel = getDriveData();
+        list[travelIndex] = travel;
+        travelIndex++;
+      }
+      going = 'N';
       LeftMotor.stop();
       RightMotor.stop();
       Brain.Screen.printAt(10, 20, "I can't see a red object");
@@ -119,17 +159,29 @@ int main() {
     }
 
     if(count > 2000){
+
+      ClawMotor.setVelocity(3, vex::velocityUnits::pct);
+      ClawMotor.spin(vex::directionType::rev);
+      //Brain.Screen.printAt(10, 200, "Set velocity to 1!");
+    }
+    if(count > 2500){
       ArmMotor.spin(vex::directionType::fwd);
+      
       armCount++;
     } else {
       
     }
 
-    if(armCount > 2500){
-      armCount = 0;
+    if(armCount > 4000){
+      //armCount = 0;
       count = 0;
-      //ArmMotor.setVelocity(0, vex::velocityUnits::pct);
+      ArmMotor.setVelocity(2, vex::velocityUnits::pct);
     }
+
+  
+    // Segja tímann
+  
+    Brain.Screen.printAt(10,230,"Timer: %.3f", (float)Brain.timer(vex::timeUnits::msec));
 
     
     
