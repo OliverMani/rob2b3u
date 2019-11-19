@@ -33,3 +33,6 @@ Við forrituðum mótoranna þannig að þeir hreyfast eins nema bara eyði sem 
 
 # 22/10/2019
 Við fundum út að stöngin sé skökk, en það sem við þurftum að gera var að laga höndina þar sem hún datt úr tengingu við mótorinn, þannig að þótt mótorinn snérist þá gerði höndin það ekki, en við löguðum það, svo reyndum við líka að láta vélmennið snúa í 180 gráður en það hefur verið eitthvað vandamál við það, að dekkin spóla einhvert, svo það við getum ekki verið ákvæmir með snúninginn
+
+## 19/11/2019
+Við færðum til batteríið og löguðum snúninginn þegar vélmennið fer til baka, en hann er soldið ónákvæmur svo við kannski lögum það í næsta tíma
