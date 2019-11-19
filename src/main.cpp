@@ -8,15 +8,11 @@
 
 #include "vex.h"
 #include "MyVision.h"
+#include "sometasks.h"
 #include <string>
 
-using namespace vex;
+#define abs(i) i < 0 ? -i : i
 
-brain        Brain;
-motor        LeftMotor(PORT1, gearSetting::ratio18_1, false);
-motor        RightMotor(PORT10, gearSetting::ratio18_1, true);
-motor        ArmMotor(PORT8, gearSetting::ratio18_1, false);
-motor        ClawMotor(PORT3, gearSetting::ratio18_1, false);
 drivetrain   Drivetrain = drivetrain(LeftMotor, RightMotor, 319, 295, distanceUnits::mm);
 controller   Controller1;
 
@@ -30,7 +26,7 @@ const int deiling = 40;
 // heldur utan um hvert vélmennið er að fara
 struct Travel {
   float time; //millisecondss
-  int left_motor;
+  int left_motor; // velocity í prósentum
   int right_motor;
 };
 
@@ -42,7 +38,21 @@ struct Travel getDriveData(){
   struct Travel result;
   result.time = (float)Brain.timer(vex::timeUnits::msec);
   result.left_motor = LeftMotor.velocity(vex::velocityUnits::pct);
-  result.right_motor = RightMotor.velocity(vex::velocityUnits::pct);;
+  result.right_motor = RightMotor.velocity(vex::velocityUnits::pct);
+
+  if(result.left_motor > 20 && result.right_motor > 20){
+    result.left_motor = 30;
+    result.right_motor = 30;
+  }
+
+  if(RightMotor.direction() == vex::directionType::rev){
+    result.right_motor *= -1;
+  }
+
+  if(LeftMotor.direction() == vex::directionType::rev){
+    result.left_motor *= -1;
+  }
+
   Brain.resetTimer();
   return result;
 }
@@ -59,17 +69,11 @@ void setSpeed(double percent){
 int main() {
   int travelIndex = 0;
   int count = 0;
-  int armCount = 0;
   bool searching = true;
-  bool drivingBack = false;
   char going = 'N'; //N = Nowhere, F = Forwards, L = Left, R = Right
 
-  float drivingTimeMax = 0; // Notast þegar við keyrum til baka
-  float drivingTime = 0; // Notast þegar við förum til baka
-  bool turningAround = false; // Notast þegar við förum til baka
-
   setSpeed(30);
-  ArmMotor.setVelocity(30, vex::velocityUnits::pct);
+  ArmMotor.setVelocity(20, vex::velocityUnits::pct);
   ClawMotor.setVelocity(10 , vex::velocityUnits::pct);
 
   
@@ -142,10 +146,18 @@ int main() {
           LeftMotor.stop();
           RightMotor.stop();
           
+          searching = false;
+
           
-          count++;
           
           ClawMotor.spin(vex::directionType::rev);
+
+          while(count <= 2000){
+            count++;
+            Brain.Screen.printAt(10, 20, "Count to 2000: %d                     ", count);
+          }
+
+          
         }
 
         if(count > 2000){
@@ -153,10 +165,15 @@ int main() {
           ClawMotor.setVelocity(3, vex::velocityUnits::pct);
           ClawMotor.spin(vex::directionType::rev);
           //Brain.Screen.printAt(10, 200, "Set velocity to 1!");
+          while(count++ > 25000);
+
           
+          searching = false;
+          continue;
         }
 
       } else {
+        // Þegar það er enginn hlutur
         if(going != 'N'){
           struct Travel travel = getDriveData();
           list[travelIndex] = travel;
@@ -172,34 +189,21 @@ int main() {
     }
     Brain.Screen.printAt(10, 140, "Movement index: %d    ", travelIndex);
 
+    if(!searching){
+      Brain.Screen.printAt(10, 20, "I must move back....");
+      ClawMotor.spin(vex::directionType::rev);
+      Brain.resetTimer();
 
-    
-    if(count > 2500){
-      ArmMotor.spin(vex::directionType::fwd);
-      searching = false;
-      armCount++;
-    } else {
-      
-    }
+      while(Brain.timer(vex::timeUnits::msec) < 5000);
+      Brain.Screen.printAt(10, 20, "I must turn around");
+      vex::task left(rotateLeft);
+      vex::task right(rotateRight);
 
-    if(armCount > 4000 && !drivingBack){
-      //armCount = 0;
       count = 0;
-      ArmMotor.setVelocity(2, vex::velocityUnits::pct); // kemur í vel fyrir að armur detti
-      drivingBack = true;
-      turningAround = true;
-    }
+      Brain.resetTimer();
 
-    if(turningAround){
-      LeftMotor.rotateFor(vex::directionType::fwd, 90*10.2, vex::rotationUnits::deg);
-      RightMotor.rotateFor(vex::directionType::rev, 90*10.2, vex::rotationUnits::deg);
-      turningAround = false;
-    } else if(drivingBack){
-      /*int left_motor = list[travelIndex].left_motor;
-      int right_motor = list[travelIndex].right_motor;
-      drivingTimeMax = list[travelIndex].time;*/
-
-      
+      while(Brain.timer(vex::timeUnits::msec) < 6000);
+      break; // Hérna þurfum við að komast út úr lykkjunni til að fara til baka
     }
   
     // Segja tímann
@@ -208,5 +212,34 @@ int main() {
 
     
     
+  } // WHILE TRUE LYKKJA ENDAR
+
+  Brain.Screen.printAt(10, 20, "List length: %d           ", travelIndex);
+
+  for(int i = travelIndex; i >= 0; i--){
+    Brain.Screen.printAt(10, 50, "Index: %d         ", i);
+    struct Travel travel = list[i];
+    
+    
+
+    // Við þurfum að hafa þetta víxlað úr structinu
+    int left_motor = travel.right_motor;
+    int right_motor = travel.left_motor;
+
+    Brain.Screen.printAt(10, 80, "Left motor velocity: %d         ", left_motor);
+    Brain.Screen.printAt(10, 110, "Right motor velocity: %d         ", right_motor);
+
+
+
+    LeftMotor.setVelocity(left_motor, vex::percentUnits::pct);
+    RightMotor.setVelocity(right_motor, vex::percentUnits::pct);
+
+    LeftMotor.spin(left_motor > 0 ? vex::directionType::fwd : vex::directionType::rev);
+    RightMotor.spin(right_motor > 0 ? vex::directionType::fwd : vex::directionType::rev);
+    Brain.resetTimer();
+    while(Brain.timer(vex::timeUnits::msec) < travel.time);
+    LeftMotor.stop();
+    RightMotor.stop();
   }
+
 }
