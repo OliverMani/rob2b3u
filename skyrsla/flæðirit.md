@@ -1,1 +1,1 @@
-<mxfile host="www.draw.io" modified="2019-11-21T14:31:19.859Z" agent="Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0" version="12.2.8" etag="z-sZkJ0RvWzsU3Sn7Awq" type="github"><diagram id="_1GnSuPZ57P8-6KsqVLd">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+![Flæðirit](./img/flæðirit.png)
